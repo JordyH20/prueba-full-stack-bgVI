@@ -1,12 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Vuelos } from './components/vuelos/vuelos';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [Vuelos],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
-export class App {
-  protected readonly title = signal('WebAPP_JORDY_HURTADO');
-}
+export class App {}

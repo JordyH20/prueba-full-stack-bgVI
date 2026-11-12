@@ -1,0 +1,46 @@
+<section class="container">
+  <h1>Vuelos</h1>
+
+  @if (cargando) {
+    <p class="mensaje">Conectando con el servicio de vuelos...</p>
+  } @else if (error) {
+    <p class="mensaje error">{{ error }}</p>
+  } @else if (vuelos().length === 0) {
+    <p class="mensaje">El servicio respondió, pero no hay vuelos registrados.</p>
+  }
+
+  <div class="tabla-contenedor">
+    <table>
+      <thead>
+        <tr>
+          <th>Número de vuelo</th>
+          <th>Aerolínea</th>
+          <th>Origen</th>
+          <th>Destino</th>
+          <th>Salida</th>
+          <th>Llegada estimada</th>
+          <th>Capacidad económica</th>
+          <th>Capacidad ejecutiva</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (vuelo of vuelos(); track vuelo.idVuelo) {
+          <tr>
+            <td>{{ vuelo.numeroVuelo }}</td>
+            <td>{{ vuelo.idAerolinea }}</td>
+            <td>{{ vuelo.idAeropuertoOrigen }}</td>
+            <td>{{ vuelo.idAeropuertoDestino }}</td>
+            <td>{{ vuelo.fechaHoraSalida | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ vuelo.fechaHoraLlegadaEstimada | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ vuelo.capacidadEconomica }}</td>
+            <td>{{ vuelo.capacidadEjecutiva }}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="8">Sin datos para mostrar</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
